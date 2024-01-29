@@ -73,31 +73,34 @@ public class Arrays{
             start++;
             end--;
         }
-    }
-    public static void printArray(int[] arr) {
         for (int value : arr) {
             System.out.print(value + " ");
         }
         System.out.println();
     }
-    public static void rotateRight(int[] arr, int k) {
-        int n = arr.length;
-
-
-        k = k % n;
-
-        
-        reverse(arr, n - k, n - 1);
-
-        
-        reverse(arr, 0, n - k - 1);
-
-        
-        reverse(arr, 0, n - 1);
-        System.out.print("Rotated array: ");
+    public static void rotateRight(int a[], int k) {
+        int n = a.length;
+        reverseA(a, 0, n - k - 1);
+        reverseA(a, n - k, n - 1);
+        reverseA(a, 0, n - 1);
+        System.out.print("from right to left: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
     }
-
-    private static void reverse(int[] arr, int start, int end) {
+    public static void leftRotation(int a[], int k) {
+        int n = a.length;
+        reverseA(a, 0, k - 1);
+        reverseA(a, k, n - 1);
+        reverseA(a, 0, n - 1);
+        System.out.print("from left to right: ");
+        for (int i = 0; i < n; i++) {
+            System.out.print(a[i] + " ");
+        }
+        System.out.println();
+    }
+    private static void reverseA(int[] arr, int start, int end) {
         while (start < end) {
             
             int temp = arr[start];
@@ -109,6 +112,8 @@ public class Arrays{
             end--;
         }
     }
+
+    
     public static void findMaxSubarray(int[] arr) {
         int n = arr.length;
         int maxEndingHere = arr[0];
@@ -152,9 +157,11 @@ public class Arrays{
         sortColors(nums);
         int[] array = {5, 2, 9, 1, 5, 6};
         findMaxMin(array);
+        //printArray(array);
         reverse(array);
         int k = 2;
         rotateRight(array, k);
+        leftRotation(array,k);
         findMaxSubarray(array);
         int [] ab={3,7,9,11,13};
         example(ab);
