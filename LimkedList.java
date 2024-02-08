@@ -147,32 +147,105 @@ public class LimkedList {
         }
         return prev;
     }
+    public static Node evenOddSeggregation(){
+        Node evenHead = new Node(-1);
+        Node oddHead = new Node(-1);
+        Node even = evenHead;
+        Node odd = oddHead;
+        Node temp = head;
+        int index = 0;
+        while(temp!= null){
+            if(index%2==0) {
+                even.next = temp;
+                even=even.next;
+            }
+            else {
+                odd.next=temp;
+                odd=odd.next;
+            }
+            index++;
+            temp=temp.next;
+        }
+        even.next=oddHead.next;
+        return evenHead.next;
+    }
+    public static Node sortColors(){
+        Node zeroHead = new Node(-1);
+        Node oneHead = new Node(-1);
+        Node twoHead = new Node(-1);
+        Node zero = zeroHead;
+        Node one = oneHead;
+        Node two=twoHead;
+        Node temp = head;
+        while(temp != null){
+            if(temp.data == 0){
+                zero.next = temp;
+                zero = zero.next;
+            }
+            else if(temp.data == 1){
+                one.next = temp;
+                one = one.next;
+            }
+            else{
+                two.next = temp;
+                two = two.next;
+            }
+            temp = temp.next;
+        }
+        two.next = null;
+        if(oneHead.next == null){
+            zero.next = twoHead.next;
+        }
+        else{
+            zero.next = oneHead.next;
+        }
+        one.next = twoHead.next;
+        return zeroHead.next;
+    }
     public static void main(String[] args) {
-        head=new Node(10);
-        head.next=new Node(20);
-        head.next.next=new Node(30);
-        head.next.next.next=new Node(40);
-        head.next.next.next.next=new Node(50);
-        head.next.next.next.next.next=new Node(60);
-        printLL(head);
-        addFirst(100);
-        printLL(head);
-        addInMiddle(200,head);
-        printLL(head);
-        addAtCertainPos(300,3,head);
-        printLL(head);
-        addLast(400);
-        printLL(head);
-        countNodes();
-        deleteFirst();
-        deleteLast();
-        deleteAtMiddle(head);
-        deleteAtCertainPos(head,3);
-        printLL(head);
-        search(head,300);
-        dltAtKPosFromLast(head,1);
-        printLL(head);
-        reverseOfLinkedList(head);
+        // head=new Node(10);
+        // head.next=new Node(20);
+        // head.next.next=new Node(30);
+        // head.next.next.next=new Node(40);
+        // head.next.next.next.next=new Node(50);
+        // head.next.next.next.next.next=new Node(60);
+        head=new Node(1);
+        head.next=new Node(0);
+        head.next.next=new Node(2);
+        head.next.next.next=new Node(0);
+        head.next.next.next.next=new Node(2);
+        head.next.next.next.next.next=new Node(1);
+        // printLL(head);
+        // System.out.println("Adding 100 at 1st");
+        // addFirst(100);
+        // printLL(head);
+        // System.out.println("Adding 200 at middle");
+        // addInMiddle(200,head);
+        // printLL(head);
+        // System.out.println("Adding 300 at 3rd position");
+        // addAtCertainPos(300,3,head);
+        // printLL(head);
+        // System.out.println("Adding 400 at last");
+        // addLast(400);
+        // printLL(head);
+        // System.out.println("count of all nodes:");
+        // countNodes();
+        // deleteFirst();
+        // deleteLast();
+        // deleteAtMiddle(head);
+        // deleteAtCertainPos(head,3);
+        // printLL(head);
+        // search(head,300);
+        // head=dltAtKPosFromLast(head,7);
+        // printLL(head);
+        // System.out.println("Reversing the linked list");
+        // head=reverseOfLinkedList(head);
+        // printLL(head);
+        // System.out.println("even odd segregation:");
+        // evenOddSeggregation();
+        // printLL(head);
+        System.out.println("sorting the colours:");
+        head=sortColors();
         printLL(head);
     }  
 }
