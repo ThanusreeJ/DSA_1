@@ -202,19 +202,44 @@ public class LimkedList {
         one.next = twoHead.next;
         return zeroHead.next;
     }
+    public static boolean isPalindrom(){
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null && fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        Node prev=null;
+        Node curr=slow;
+        Node next;
+        //isPalindrom();
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        Node temp=head;
+        while(temp!=null&& prev!=null){
+            if(temp.data != prev.data) return false;
+            temp=temp.next;
+            prev=prev.next;;
+        }
+        return true;
+    }
     public static void main(String[] args) {
-        // head=new Node(10);
-        // head.next=new Node(20);
-        // head.next.next=new Node(30);
-        // head.next.next.next=new Node(40);
-        // head.next.next.next.next=new Node(50);
-        // head.next.next.next.next.next=new Node(60);
-        head=new Node(1);
-        head.next=new Node(0);
-        head.next.next=new Node(2);
-        head.next.next.next=new Node(0);
-        head.next.next.next.next=new Node(2);
-        head.next.next.next.next.next=new Node(1);
+        head=new Node(10);
+        head.next=new Node(20);
+        head.next.next=new Node(30);
+        head.next.next.next=new Node(20);
+        head.next.next.next.next=new Node(10);
+        //head.next.next.next.next.next=new Node(10);
+        // head=new Node(1);
+        // head.next=new Node(0);
+        // head.next.next=new Node(2);
+        // head.next.next.next=new Node(0);
+        // head.next.next.next.next=new Node(2);
+        // head.next.next.next.next.next=new Node(1);
         // printLL(head);
         // System.out.println("Adding 100 at 1st");
         // addFirst(100);
@@ -244,9 +269,12 @@ public class LimkedList {
         // System.out.println("even odd segregation:");
         // evenOddSeggregation();
         // printLL(head);
-        System.out.println("sorting the colours:");
-        head=sortColors();
+        // System.out.println("sorting the colours:");
+        // head=sortColors();
+        // printLL(head);
+        //isPalindrom();
         printLL(head);
+        System.out.println(isPalindrom());
     }  
 }
     
