@@ -227,12 +227,32 @@ public class LimkedList {
         }
         return true;
     }
+    public static Node rotate(int k){
+        Node temp=head;
+        int count=0;
+        while(temp.next!=null){
+            count++;
+            temp=temp.next;
+        }
+        count++;
+        if(k%count==0) return head;
+        k=k%count;
+        temp.next=head;
+        Node prev=null;
+        for(int i=0;i<count-k+1;i++){
+            prev=temp;
+            temp=temp.next;
+        }
+        prev.next=null;
+        head=temp;
+        return head;
+    }
     public static void main(String[] args) {
         head=new Node(10);
         head.next=new Node(20);
         head.next.next=new Node(30);
-        head.next.next.next=new Node(20);
-        head.next.next.next.next=new Node(10);
+        head.next.next.next=new Node(40);
+        head.next.next.next.next=new Node(50);
         //head.next.next.next.next.next=new Node(10);
         // head=new Node(1);
         // head.next=new Node(0);
@@ -273,8 +293,10 @@ public class LimkedList {
         // head=sortColors();
         // printLL(head);
         //isPalindrom();
+        // printLL(head);
+        // System.out.println(isPalindrom());
+        rotate(3);
         printLL(head);
-        System.out.println(isPalindrom());
     }  
 }
     
