@@ -135,6 +135,63 @@ public class LimkedList {
         slow.next = slow.next.next;
         return head;
     }
+    public static Node removeLoop(Node head) {
+        Node slow = head;
+        Node fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast)
+                break;
+        }
+        if (slow == fast) {
+            slow = head;
+            if (slow == fast) {
+                while (fast.next != slow) {
+                    fast = fast.next;
+                }
+            } else {
+                while (slow.next != fast.next) {
+                    slow = slow.next;
+                    fast = fast.next;
+                }
+                fast.next = null;
+            }
+            // fast.next = null;
+
+        }
+        return head;
+
+    }
+    public static Node addTwoLinkedlists(Node l1, Node l2) {
+        Node temp1 = l1;
+        Node temp2 = l2;
+        int carry = 0;
+        Node head = new Node(-1);
+        Node newHead = head;
+        while (temp1 != null || temp2 != null) {
+            int sum = 0;
+            if (temp1 != null) {
+                sum += temp1.data;
+                temp1 = temp1.next;
+            }
+            if (temp2 != null) {
+                sum += temp2.data;
+                temp2 = temp2.next;
+            }
+            sum += carry;
+            carry = sum / 10;
+            Node newNode = new Node(sum % 10);
+            newHead.next = newNode;
+            newHead = newNode;
+        }
+        Node newNode = new Node(carry);
+        if (carry != 0) {
+            newHead.next = newNode;
+        }
+        return head.next;
+
+    }
     public static Node reverseOfLinkedList(Node head) {
         Node prev = null;
         Node curr = head;
@@ -247,12 +304,45 @@ public class LimkedList {
         head=temp;
         return head;
     }
+    public static Node head2;
+    public static int lenOfLL1(){
+        Node temp = head;
+        int count=0;
+        while(temp!=null){
+            count++;
+            temp=temp.next;
+        }
+        return count++;
+    }
+    public static int lenOfLL2(){
+        Node temp = head;
+        int count=0;
+        while(temp!=null){
+            count++;
+            temp=temp.next;
+        }
+        return count++;
+    }
+    public static void intersectionOfLL(){
+        int len1=lenOfLL1();
+        int len2=lenOfLL2();
+        if(len1>len2){
+            int steps=len1-len2;
+            Node temp=head;
+            while(steps!=0){
+                head=head.next;
+                steps--;
+            }
+        }
+    }
+    
+
     public static void main(String[] args) {
-        head=new Node(10);
-        head.next=new Node(20);
-        head.next.next=new Node(30);
-        head.next.next.next=new Node(40);
-        head.next.next.next.next=new Node(50);
+        // head=new Node(10);
+        // head.next=new Node(20);
+        // head.next.next=new Node(30);
+        // head.next.next.next=new Node(40);
+        // head.next.next.next.next=new Node(50);
         //head.next.next.next.next.next=new Node(10);
         // head=new Node(1);
         // head.next=new Node(0);
@@ -283,6 +373,20 @@ public class LimkedList {
         // search(head,300);
         // head=dltAtKPosFromLast(head,7);
         // printLL(head);
+        // head = removeLoop(head);
+        // printLL(head);
+        Node l1 = new Node(2);
+        l1.next = new Node(4);
+        l1.next.next = new Node(3);
+        l1.next.next.next = new Node(5);
+        // printLL(l1);
+        Node l2 = new Node(5);
+        l2.next = new Node(6);
+        l2.next.next = new Node(4);
+        l2.next.next.next = new Node(2);
+        // printLL(l2);
+        // head = addTwoLinkedlists(l1, l2);
+        // printLL(head);
         // System.out.println("Reversing the linked list");
         // head=reverseOfLinkedList(head);
         // printLL(head);
@@ -295,7 +399,11 @@ public class LimkedList {
         //isPalindrom();
         // printLL(head);
         // System.out.println(isPalindrom());
-        rotate(3);
+        // rotate(3);
+        // printLL(head);
+        lenOfLL1();
+        lenOfLL2();
+        intersectionOfLL();
         printLL(head);
     }  
 }
