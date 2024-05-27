@@ -83,16 +83,20 @@ public class LimkedList {
         temp.next = null;    
     }
     public static Node deleteAtMiddle(Node head) {
-        Node temp = head;
-        Node slow = head;
-        Node fast = head;
-        while (fast.next != null && fast.next.next != null) {
-            // slow = slow.next;
-            fast = fast.next.next;
-            slow = slow.next;
-            temp = temp.next;
+        if (head == null || head.next == null) {
+            return;
         }
-        temp.next = temp.next.next;
+
+        Node slow = head;
+        Node fast = head.next;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+
+        slow.next = slow.next.next;
+    }
         return head;
     }
     public static Node deleteAtCertainPos(Node head, int pos) {
